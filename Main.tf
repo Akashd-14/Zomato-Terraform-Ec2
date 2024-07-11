@@ -30,7 +30,7 @@ resource "aws_security_group" "Jenkins-cicd-sg" {
 }
 
 
-resource "aws_instance" "web" {
+resource "aws_instance" "akash-app" {
   ami                    = "ami-04a81a99f5ec58529"
   instance_type          = "t2.medium"
   key_name               = "Lps_App"
