@@ -1,5 +1,5 @@
-resource "aws_security_group" "Jenkins-sg" {
-  name        = "Jenkins-Security Group"
+resource "aws_security_group" "Jenkins-cicd-sg" {
+  name        = "Jenkins-cicd-Security Group"
   description = "Open 22,443,80,8080,9000"
 
   # Define a single ingress rule to allow traffic on all specified ports
@@ -25,16 +25,16 @@ resource "aws_security_group" "Jenkins-sg" {
   }
 
   tags = {
-    Name = "Jenkins-sg"
+    Name = "Jenkins-cicd-sg"
   }
 }
 
 
 resource "aws_instance" "web" {
-  ami                    = "ami-0f58b397bc5c1f2e8"
+  ami                    = "ami-04a81a99f5ec58529"
   instance_type          = "t2.medium"
-  key_name               = "AWS-Zomato-Project"
-  vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
+  key_name               = "Lps_App"
+  vpc_security_group_ids = [aws_security_group.Jenkins-cicd-sg.id]
   user_data              = templatefile("./install_jenkins.sh", {})
 
   tags = {
